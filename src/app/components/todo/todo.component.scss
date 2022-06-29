@@ -1,0 +1,45 @@
+// .container{
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+//   border-left: solid 3px;
+//   border-bottom: solid 3px;
+//   border-bottom-left-radius: 8px;
+//   padding: 8px;
+//   margin: 8px;
+// }
+
+// button{
+//   border: none;
+//   padding: 4px;
+//   border-radius: 4px;
+//   color: white;
+//   font-weight: bold;
+// }
+
+// .delete-btn{
+//   background-color: red;
+// }
+
+// .edit-btn{
+//   background-color: #555555;
+//   margin-left: 8px;
+// }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0px;
+}
+
+.divider{
+  width: 100%;
+  height: 2px;
+  margin: 8px 0px;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-between;
+}

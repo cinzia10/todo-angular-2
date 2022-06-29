@@ -1,0 +1,23 @@
+<mat-card *ngIf="todo">
+  <mat-card-title>{{todo.name | uppercase}}</mat-card-title>
+  <mat-card-content class="content">
+    <span>Creato il {{todo.creationDate | epochFormatter}}</span>
+    <span *ngIf="todo.doneDate">Completato il {{todo.doneDate | epochFormatter}}</span>
+    <mat-chip-list>
+      <mat-chip color="accent" selected *ngFor="let tag of todo.tags">#{{tag | uppercase}}</mat-chip>
+    </mat-chip-list>
+    <div class="divider" [style.backgroundColor]="todo.priority | priorityColor"></div>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button (click)="todoEdited.emit(todo)" *ngIf="!todo.doneDate" mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button (click)="todoCompleted.emit(todo)" *ngIf="!todo.doneDate" mat-icon-button>
+      <mat-icon>done</mat-icon>
+    </button>
+    <button (click)="todoDeleted.emit(todo)" *ngIf="todo.doneDate" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </mat-card-actions>
+</mat-card>
