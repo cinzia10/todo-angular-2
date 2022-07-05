@@ -1,30 +1,42 @@
 <div class="container">
   <h2 *ngIf="!id">Aggiungi Todo</h2>
   <h2 *ngIf="id">Modifica Todo</h2>
-  <mat-form-field color="accent"  appearance="fill">
+  <mat-form-field color="accent" appearance="fill">
     <mat-label>Todo name</mat-label>
-    <input matInput type="text" [(ngModel)]="todo.name">
+    <input matInput type="text" [(ngModel)]="todo.name" />
   </mat-form-field>
-  <mat-form-field  appearance="fill">
-    <mat-label>Todo priority</mat-label>
-    <input matInput type="number" [(ngModel)]="todo.priority">
-  </mat-form-field>
+
+  <span></span>
+  <mat-slider
+    [max]="3"
+    [min]="0"
+    [tickInterval]="getSliderTickInterval()"
+    [(ngModel)]="todo.priority"
+  ></mat-slider>
+
   <mat-form-field class="example-chip-list" appearance="fill">
     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let tag of tags" (removed)="remove(tag)">
-        {{tag.name}}
+      <mat-chip *ngFor="let tag of todo.tags" (removed)="remove(tag)">
+        {{ tag }}
         <button matChipRemove>
           <mat-icon>cancel</mat-icon>
         </button>
       </mat-chip>
-      <input [matChipInputFor]="chipList"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event)"
-             [ngModel]="(todo.tags | tagsString)"
-             (ngModelChange)="this.todo.tags=convertTags($event)">
+      <input
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
     </mat-chip-list>
   </mat-form-field>
 
-  <button mat-raised-button [disabled]="!todo.name" (click)="saveTodo()" color="primary">Save</button>
+  <button
+    mat-raised-button
+    [disabled]="!todo.name"
+    (click)="saveTodo()"
+    color="primary"
+  >
+    Save
+  </button>
 </div>
